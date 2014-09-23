@@ -1,4 +1,4 @@
-schools <- c("RCAA", "STA", "DTA", "SCH")
+schools <- c("RCAA", "STA", "DTA", "SCH", 'RSP')
 grades <- c("3", "4", "5", "6", "7", "8")
 small.schools <- c("RCAA35", "RCAA68", "STA35", "STA35", "DTA35", "DTA68",
 									"SCH35", "SCH68"
