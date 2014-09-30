@@ -26,11 +26,11 @@ dt <- subset(dt, active == 1)
 # Check for duplicate tier entries and save a file with dupes for correction
 day.dupes <- dt %>% group_by(ps.student.number, subject, start) %>%
   summarize(n=n()) %>% subset(., n > 1)
-day.dupes <- merge(day.dupes, select(ds, student_number:true_grade),
+day.dupes <- merge(day.dupes, select(ds, student_number:grade),
   by.x='ps.student.number', by.y='student_number'
 )
 save_df_as_csv(
-  arrange(day.dupes, school, true_grade, ps.student.number, subject, start),
+  arrange(day.dupes, school, grade, ps.student.number, subject, start),
   'duplicate tier entries'
 )
 
@@ -43,7 +43,7 @@ ds.e$subject <- rep('ELA', nrow(ds.e))
 ds.m <- ds
 ds.m$subject <- rep('Math', nrow(ds.m))
 dsb <- rbind(ds.e, ds.m)
-dsb$small.school <- apply(dsb, 1, make_small_school, grade.col='true_grade')
+dsb$small.school <- apply(dsb, 1, make_small_school, grade.col='grade')
 
 # Merge students and tiers, keeping students
 db <- merge(dsb, select(dt, ps.student.number, subject, tier.num),

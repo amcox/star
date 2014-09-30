@@ -25,6 +25,6 @@ make_monitoring_counts <- function(d, us.date='2014-07-01', pm.date='2014-07-01'
   )
 }
 
-ds <- df %>% group_by(id) %>% do(make_monitoring_counts(., pm.date='2014-08-07'))
+ds <- df %>% group_by(id) %>% do(make_monitoring_counts(., pm.date='2014-09-07'))
 
 save_df_as_csv(ds, 'completion counts')

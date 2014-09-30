@@ -12,7 +12,8 @@ SELECT
   s.entrydate entry_date,
   s.home_room,
   se.laa1,
-  se.rti_not_star
+  se.rti_not_star,
+  s.dob
 FROM students s
 LEFT JOIN u_def_ext_students se ON se.studentsdcid = s.dcid
 JOIN schools sch ON s.schoolid = sch.school_number

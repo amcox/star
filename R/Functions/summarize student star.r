@@ -54,7 +54,7 @@ summarize_student_star <- function(d) {
 generate_student_summaries <- function(d.star, d.ps){
   # library(plyr)
 	# Make a df with just grades from the PS info, join onto STAR
-	d.grades <- select(d.ps, student_number, true_grade)
+	d.grades <- select(d.ps, student_number, grade)
   names(d.grades) <- c('StudentId', 'grade')
 	d.star.grades <- merge(d.star, d.grades)
   
@@ -67,23 +67,14 @@ generate_student_summaries <- function(d.star, d.ps){
   d.star.grades %>% group_by(StudentId, subject) %>% do(summarize_student_star(.))
 }
 
-generate_student_model_info_with_ps_and_rti <- function(include.rti=F) {
-	# If include.rti is T, then the export will include all the RTI fields
-	# from the PS data, otherwise it will only include grade and school info
-		
+generate_student_model_info <- function() {
 	# Load data and make summary
 	df <- load_star_data()
 	df.ps <- load_student_data()
 
 	ds <- generate_student_summaries(df, df.ps)
 
-	# Join on the PS data, including RTI info
-	if(include.rti){
-		ds <- merge(ds, df.ps)
-	}else{
-		df.ps.sub <- df.ps[, 1:7]
-		ds <- merge(ds, df.ps.sub)
-	}
+	ds <- merge(ds, df.ps, by.x='StudentId', by.y='student_number')
 	
 	# Add the leap prediction information
 	ds <- add_leap_predictions(ds)

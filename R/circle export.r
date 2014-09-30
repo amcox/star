@@ -19,7 +19,7 @@ names(df)[names(df) == 'true_grade'] <- 'grade'
 
 # Just grab the data we need
 df <- subset(df, subject == 'reading')
-df <- subset(df, school == 'DTA' | school == 'RCAA' | (school == 'SCH' & true_grade == 3))
+df <- subset(df, school == 'DTA' | school == 'RCAA' | (school == 'SCH' & grade == 3))
 
 # Find the gap to grade level for each test
 df$goal <- apply(df, 1, goal_level_from_row)
@@ -64,7 +64,7 @@ d$on.level <- apply(d, 1, function(r) {
 
 # Select the columns in the right order
 de <- d %>% select(year, district.code, district.name, school.code,
-  school.long, true_grade, home_room, last_name, first_name, StudentId,
+  school.long, grade, home_room, last_name, first_name, StudentId,
   dob, assessment.period, measure, ge, on.level
 )
 

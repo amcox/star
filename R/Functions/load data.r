@@ -59,6 +59,7 @@ load_student_data <- function(all=F) {
     )
   }
   names(d) <- tolower(names(d))
+  names(d)[names(d) == 'true_grade'] <- 'grade'
   return(d)
 }
 
