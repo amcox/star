@@ -50,7 +50,7 @@ df <- load_star_data()
 names(df) <- c("id", "date", "GP", "SS", "GE", "PR", "NCE", "subject", "IRL",
 								"LowerZPD", "UpperZPD"
 )
-ds <- df %>% group_by(id) %>% do(make_monitoring_counts(., pm.date='2014-09-07'))
+ds <- df %>% group_by(id) %>% do(make_monitoring_counts(., pm.date='2014-10-21', us.date='2014-10-21'))
 ds$id <- extract_numeric(ds$id)
 ds <- subset(ds, !is.na(id))
 
