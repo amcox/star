@@ -93,3 +93,11 @@ load_intervention_data <- function() {
   return(d)
 }
 
+load_enrollments_data <- function() {
+  d <- read.csv(file="./../Data/enrollments data.csv", head=TRUE, na.string=c("", " ", "  "),
+    stringsAsFactors=F
+  )
+  names(d) <- tolower(names(d))
+  return(d)
+}
+
