@@ -9,9 +9,9 @@ update_functions <- function() {
 update_functions()
 
 export_student_model_info <- function(include.rti=F){
-  ds <- generate_student_model_info_for_teachers()
+  ds <- generate_student_model_info()
 	# Write result to the spreadsheets folder
-	file.name <- "student STAR models data for teachers"
+	file.name <- "student STAR models data"
 	save_df_as_csv(ds, file.name)
 }
 
