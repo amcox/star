@@ -5,3 +5,5 @@ Spreadsheets/*
 !.gitkeep
 .Rhistory
 .Rdata
+.Rapp.history
+.DS_Store
